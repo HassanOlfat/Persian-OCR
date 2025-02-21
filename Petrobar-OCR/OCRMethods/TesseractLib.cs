@@ -12,8 +12,8 @@ namespace Petrobar_OCR.OCRMethods
 
             using (var img = Pix.LoadFromFile(filePath))
             {
-                var result = ConvertArabicToPersian.Convert(ocrEngine.Process(img).GetText());
-                return ConvertPersianArabicNumbersToEnglish.Convert(result);
+               
+                return ocrEngine.Process(img).GetText();
             }
 
         }

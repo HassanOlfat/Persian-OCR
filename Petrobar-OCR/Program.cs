@@ -23,7 +23,13 @@ app.MapPost("/Check", async (CheckRequest checkRequest) =>
 
    string ocrText= ConvertToText.Action(checkRequest.FilePath, checkRequest.CheckMethod);
 
-   var result=  Find.Action(checkRequest.Strings, ocrText);
+  //  ocrText = LicensePlateCorrector.Convert(ocrText);
+    ocrText = ConvertArabicToPersian.Convert(ocrText);
+    ocrText= ConvertPersianArabicNumbersToEnglish.Convert(ocrText);
+    ocrText= CityNameCorrector.Convert(ocrText);
+    ocrText = FixCorrectText.Convert(ocrText);
+
+    var result=  Find.Action(checkRequest.Strings, ocrText);
 
 
 

@@ -30,8 +30,8 @@ namespace Petrobar_OCR.OCRMethods
             }
             if (ocrresult != null)
             {
-               var result = ConvertArabicToPersian.Convert(ocrresult.Text);
-                return ConvertPersianArabicNumbersToEnglish.Convert(result);
+             
+                return ocrresult.Text;
             }
             return string.Empty;
 
