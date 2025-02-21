@@ -4,7 +4,7 @@ namespace Petrobar_OCR
 {
     public static class IronOcrLib
     {
-        public static string[]  Action(string filePath1 , string filePath2)
+        public static string  Action(string filePath)
         {
 
             var ocr = new IronTesseract();
@@ -16,23 +16,22 @@ namespace Petrobar_OCR
             //memoryStream.Position = 0;
             //using var input = new OcrInput(memoryStream);
 
-            OcrInput[] ocrInputs = new OcrInput[] { new OcrInput(filePath1), new OcrInput(filePath2) };
-
-
-            OcrResult[] results;
+            OcrResult result;
             try
             {
-                results = ocr.ReadMultithreaded(ocrInputs);
-                //  result2 = ocr.Read(filePath2);
+                
+                result = ocr.Read(filePath);
             }
             catch
             {
-                results = new OcrResult[] { };
-                //  result2 = null;
+                result= null;
+                
             }
-            
-            return new string[] { results[0]?.Text, results[1]?.Text };
-           
+            if (result != null)
+            {
+                return result.Text;
+            }
+            return string.Empty;
 
         }
     }
