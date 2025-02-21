@@ -17,20 +17,20 @@ app.MapPost("/upload", async (IFormFile file1, IFormFile file2) =>
     {
         return Results.BadRequest("Both images are required.");
     }
-    var imgAddress = "F:\\uploads\\";
+    var imgAddress = "C:\\Users\\***\\Desktop\\Temp Project\\EasyOCRProject\\img\\";
 
     var u = await Upload.UploadFile(file1, file2);
 
-    Mat preprocessed = DocumentPreprocessor.PreprocessDocument($"{imgAddress}2ca30949-89a9-4ce6-8145-80b05cc87988.jpg");
+  //  Mat preprocessed = DocumentPreprocessor.PreprocessDocument($"{imgAddress}2ca30949-89a9-4ce6-8145-80b05cc87988.jpg");
 
-    Cv2.ImWrite($"{imgAddress}document_preprocessed.jpg", preprocessed);
+   // Cv2.ImWrite($"{imgAddress}document_preprocessed.jpg", preprocessed);
 
-    var b=  TesseractLib.Action($"{imgAddress}document_preprocessed.jpg", $"{imgAddress}1.jpg");
- // var c= IronOcrLib.Action("F:\\spot\\petrobar\\Petrobar-OCR\\Petrobar-OCR\\uploads\\2ca30949-89a9-4ce6-8145-80b05cc87988.jpg", "F:\\spot\\petrobar\\Petrobar-OCR\\Petrobar-OCR\\uploads\\1.jpg")[0];
+    var b=  TesseractLib.Action($"{imgAddress}3.jpg", $"{imgAddress}1.jpg");
+ // var c= IronOcrLib.Action("F:***\\2ca30949-89a9-4ce6-8145-80b05cc87988.jpg", "F:***\\1.jpg")[0];
 
 
 
-    return Results.Json(u);
+    return Results.Json(b);
 })
 .WithName("UploadImages").DisableAntiforgery();
 
