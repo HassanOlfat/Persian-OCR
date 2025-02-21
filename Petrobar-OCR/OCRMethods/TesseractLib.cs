@@ -1,8 +1,8 @@
 ﻿using Tesseract;
 using Petrobar_OCR.Utilites;
-namespace Petrobar_OCR
+namespace Petrobar_OCR.OCRMethods
 {
-    public static class  TesseractLib
+    public static class TesseractLib
     {
         public static string Action(string filePath)
         {
@@ -12,12 +12,13 @@ namespace Petrobar_OCR
 
             using (var img = Pix.LoadFromFile(filePath))
             {
-                return ConvertPersianArabicNumbersToEnglish.Convert(ocrEngine.Process(img).GetText());
+                var result = ConvertArabicToPersian.Convert(ocrEngine.Process(img).GetText());
+                return ConvertPersianArabicNumbersToEnglish.Convert(result);
             }
 
         }
 
-      
+
 
     }
 }

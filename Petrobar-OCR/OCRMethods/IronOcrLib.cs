@@ -1,10 +1,11 @@
 ﻿using IronOcr;
+using Petrobar_OCR.Utilites;
 
-namespace Petrobar_OCR
+namespace Petrobar_OCR.OCRMethods
 {
     public static class IronOcrLib
     {
-        public static string  Action(string filePath)
+        public static string Action(string filePath)
         {
 
             var ocr = new IronTesseract();
@@ -16,25 +17,26 @@ namespace Petrobar_OCR
             //memoryStream.Position = 0;
             //using var input = new OcrInput(memoryStream);
 
-            OcrResult result;
+            OcrResult ocrresult;
             try
             {
-                
-                result = ocr.Read(filePath);
+
+                ocrresult = ocr.Read(filePath);
             }
             catch
             {
-                result= null;
-                
+                ocrresult = null;
+
             }
-            if (result != null)
+            if (ocrresult != null)
             {
-                return result.Text;
+               var result = ConvertArabicToPersian.Convert(ocrresult.Text);
+                return ConvertPersianArabicNumbersToEnglish.Convert(result);
             }
             return string.Empty;
 
         }
     }
 
-    
+
 }

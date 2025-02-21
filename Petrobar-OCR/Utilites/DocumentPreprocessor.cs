@@ -1,23 +1,23 @@
 ﻿using System;
 using OpenCvSharp;
 
-namespace Petrobar_OCR
+namespace Petrobar_OCR.Utilites
 {
 
-public static class DocumentPreprocessor
+    public static class DocumentPreprocessor
     {
         public static Mat PreprocessDocument(string inputImagePath)
         {
             Mat original = Cv2.ImRead(inputImagePath);
 
-          //  Mat noStamp = RemoveStamp(original);
+            //  Mat noStamp = RemoveStamp(original);
 
-          //  Mat deskewed = Deskew(noStamp);
+            //  Mat deskewed = Deskew(noStamp);
 
             Mat gray = new Mat();
             Cv2.CvtColor(original, gray, ColorConversionCodes.BGR2GRAY);
 
-           // Mat noLines = RemoveLines(gray);
+            // Mat noLines = RemoveLines(gray);
 
             Mat final = new Mat();
             Cv2.Threshold(gray, final, 0, 255, ThresholdTypes.Binary | ThresholdTypes.Otsu);
@@ -54,7 +54,7 @@ public static class DocumentPreprocessor
             Cv2.FindNonZero(binary, nonZeroCoordinates);
 
             if (nonZeroCoordinates.Rows == 0)
-                return src; 
+                return src;
 
             RotatedRect rect = Cv2.MinAreaRect(nonZeroCoordinates);
             double angle = rect.Angle;

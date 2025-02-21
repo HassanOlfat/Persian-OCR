@@ -1,10 +1,11 @@
 ﻿using Petrobar_OCR.Enums;
+using Petrobar_OCR.OCRMethods;
 
 namespace Petrobar_OCR.Utilites
 {
-    public class Convert
+    public static class ConvertToText
     {
-        public string  Action(string filePath , CheckMethod checkMethod )
+        public static string  Action(string filePath , CheckMethod checkMethod )
         {
             string result= string.Empty;
 

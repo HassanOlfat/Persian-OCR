@@ -1,6 +1,7 @@
 using OpenCvSharp;
 using Petrobar_OCR;
 using Petrobar_OCR.Enums;
+using Petrobar_OCR.Utilites;
 using System.Linq.Expressions;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
@@ -12,26 +13,21 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.MapPost("/Check", async (List<string> strings, string filePath, CheckMethod checkMethod) =>
+app.MapPost("/Check", async (CheckRequest checkRequest) =>
 {
     
-    if (string.IsNullOrEmpty(filePath))
+    if (string.IsNullOrEmpty(checkRequest.FilePath))
     {
         return Results.BadRequest("filePath is required.");
     }
 
-    
+   string ocrText= ConvertToText.Action(checkRequest.FilePath, checkRequest.CheckMethod);
 
-    //Mat preprocessed = DocumentPreprocessor.PreprocessDocument(filePath);
-    //Cv2.ImWrite(filePath, preprocessed);
-
-    var b=  TesseractLib.Action(filePath);
-
- // var c= IronOcrLib.Action("F:***\\2ca30949-89a9-4ce6-8145-80b05cc87988.jpg", "F:***\\1.jpg")[0];
+   var result=  Find.Action(checkRequest.Strings, ocrText);
 
 
 
-    return Results.Json(b);
+    return Results.Json(result);
 }).DisableAntiforgery();
 
 
