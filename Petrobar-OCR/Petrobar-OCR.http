@@ -1,0 +1,6 @@
+@Petrobar_OCR_HostAddress = http://localhost:5189
+
+GET {{Petrobar_OCR_HostAddress}}/
+Accept: application/json
+
+###

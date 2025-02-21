@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	  <TargetFramework>net8.0-windows</TargetFramework>
+	  <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <UseWindowsSDK>true</UseWindowsSDK>
+
+	  <RootNamespace>Petrobar_OCR</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IronOcr" Version="2020.11.2" />
+    <PackageReference Include="IronOcr.Languages.Persian" Version="2020.11.2" />
+    <PackageReference Include="OpenCvSharp4" Version="4.10.0.20241108" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.10.0.20241108" />
+    <PackageReference Include="Tesseract" Version="5.2.0" />
+	  <!--<PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.22000" />-->
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="uploads\" />
+  </ItemGroup>
+
+</Project>
