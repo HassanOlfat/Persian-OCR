@@ -1,0 +1,6 @@
+@Persian_OCR_HostAddress = http://localhost:5189
+
+GET {{Persian_OCR_HostAddress}}/
+Accept: application/json
+
+###
